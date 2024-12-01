@@ -2,29 +2,44 @@ import { ChangeEvent } from "react";
 import styled from "styled-components";
 
 const InputContainer = styled.div`
-  display: grid;  
-  margin-left: auto;
-  margin-right: auto;
-  grid-template-columns: 30% 50%;
-`
-
-const LabelDiv = styled.div`
+  position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  margin: 20px 0;
 `
 
-const InputDiv = styled.div`
-  display: flex;
-  align-items: center
+const LabelDiv = styled.div<{ $visible: boolean }>`
+  position: absolute;
+  right: calc(50% + 35% + 10px);
+  width: 110px;
+  opacity: ${props => props.$visible ? 1 : 0};
+  pointer-events: none;
+  text-align: right;
+  transition: opacity 0.3s ease;
 `
 
-const StyledInput = styled.input`
-  padding: 5px;
-  margin: 10px;
+const InputWrapper = styled.div`
+  position: relative;
+  width: 70%;
+`
+
+const StyledInput = styled.input<{ $hasValue: boolean }>`
+  width: 100%;
+  padding: 10px;
   border-radius: 5px;
+  border: 1px solid ${props => props.$hasValue ? '#cccccc' : '#000000'};
   outline: none;
-  border: 1px solid black;
-  min-width: 100%;
+  transition: border-color 0.3s ease;
+
+  &::placeholder {
+    color: transparent;
+  }
+  
+  &:focus::placeholder {
+    color: #999
+  }
 `
 
 interface InputProps {
@@ -35,17 +50,23 @@ interface InputProps {
 }
 
 function Input({ label, name, value, onChange }: InputProps) {
+  const hasValue = value.trim().length > 0;
+
   return (
     <InputContainer>
-      <LabelDiv>
-        <label>{label}</label>
+      <LabelDiv $visible={!hasValue}>
+        <label htmlFor={name}>{label}</label>
       </LabelDiv>
-      <InputDiv>
+      <InputWrapper>
         <StyledInput
-          name = {name}
-          value = {value} 
-          onChange = {onChange} />
-      </InputDiv>
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          $hasValue={hasValue}
+          placeholder={hasValue ? label : ''}
+        />
+      </InputWrapper>
     </InputContainer>
   );
 }

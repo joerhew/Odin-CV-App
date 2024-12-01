@@ -1,11 +1,10 @@
-import React from 'react';
 import './App.css';
-import GeneralDash from './components/GeneralDash';
+import Page from './components/Page';
 
 function App() {
   return (
     <>
-      <GeneralDash />
+      <Page />
     </>
   );
 }

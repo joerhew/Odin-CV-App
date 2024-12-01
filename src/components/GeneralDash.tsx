@@ -1,6 +1,9 @@
+import { ChangeEvent, useState } from "react"
+
+import Output from "./Output"
 import Input from "./Input"
 import Button from "./Button"
-import { ChangeEvent, useState } from "react"
+
 
 function GeneralDash() {
   const [generalData, setGeneralData] = useState({
@@ -19,7 +22,7 @@ function GeneralDash() {
 
   return (
     <>
-      <h1>General Information</h1>
+      <h2>General Information</h2>
       <Input 
         name='name' 
         label='Name' 
@@ -38,7 +41,7 @@ function GeneralDash() {
         value={generalData.number} 
         onChange={handleChange}
       />
-      <Button>Submit</Button>
+      <Button>Confirm</Button>
     </>
   )
 }
