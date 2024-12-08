@@ -9,7 +9,11 @@ function GeneralDash() {
   const [generalData, setGeneralData] = useState({
     name: "",
     email: "",
-    number: ""
+    number: "",
+    schoolName: "",
+    major: "",
+    schoolStart: "",
+    schoolEnd: ""
   })
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -39,6 +43,31 @@ function GeneralDash() {
         name='number' 
         label='Phone Number' 
         value={generalData.number} 
+        onChange={handleChange}
+      />
+      <h2>Education Experience</h2>
+      <Input 
+        name='school-name' 
+        label='School' 
+        value={generalData.schoolName} 
+        onChange={handleChange}
+      />
+      <Input 
+        name='major' 
+        label='Major' 
+        value={generalData.major} 
+        onChange={handleChange}
+      />
+      <Input 
+        name='school-start' 
+        label='Started' 
+        value={generalData.schoolStart} 
+        onChange={handleChange}
+      />
+      <Input 
+        name='school-end' 
+        label='Ended' 
+        value={generalData.schoolEnd} 
         onChange={handleChange}
       />
       <Button>Confirm</Button>

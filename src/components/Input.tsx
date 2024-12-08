@@ -12,7 +12,7 @@ const InputContainer = styled.div`
 
 const LabelDiv = styled.div<{ $visible: boolean }>`
   position: absolute;
-  right: calc(50% + 35% + 10px);
+  right: calc(60% + 35% + 10px);
   width: 110px;
   opacity: ${props => props.$visible ? 1 : 0};
   pointer-events: none;
@@ -22,6 +22,7 @@ const LabelDiv = styled.div<{ $visible: boolean }>`
 
 const InputWrapper = styled.div`
   position: relative;
+  display: flex;
   width: 70%;
 `
 
@@ -67,6 +68,7 @@ function Input({ label, name, value, onChange }: InputProps) {
           placeholder={hasValue ? label : ''}
         />
       </InputWrapper>
+      <button>✔️</button>
     </InputContainer>
   );
 }
